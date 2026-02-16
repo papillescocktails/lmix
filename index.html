@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LMIX - Cocktails</title>
+    <meta
+      name="description"
+      content="LMIX réinvente le cocktail prêt-à-déguster avec des créations avec et sans alcool."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Roboto+Condensed:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ececec;
+        --panel: #ffffff;
+        --text: #111111;
+        --muted: #575757;
+        --border: #666666;
+        --container: 1025px;
+        --space-1: 0.5rem;
+        --space-2: 0.75rem;
+        --space-3: 1rem;
+        --space-4: 1.5rem;
+        --space-5: 2rem;
+        --space-6: 3rem;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto Condensed", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      main {
+        background: var(--panel);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        max-width: var(--container);
+        margin: 0 auto;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        background: var(--bg);
+      }
+
+      .header,
+      .card-shell,
+      .card-shell-heading,
+      .card-shell-body,
+      .section-break,
+      .product-card,
+      .product-card-head,
+      .product-card-body,
+      .line-panel,
+      .line-panel-title,
+      .line-panel-text,
+      .line-panel-footnote,
+      .about-grid,
+      .about-row,
+      .about-copy,
+      .title-columns,
+      .title-column,
+      .contact-shell,
+      .contact-head,
+      .contact-intro,
+      .contact-form,
+      .footer-main,
+      .footer-col,
+      .legal {
+        background: var(--panel);
+      }
+
+      .section-title {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.42em;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .header {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-4) var(--space-5) var(--space-2);
+      }
+
+      .header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+      }
+
+      .logo {
+        font-family: "Oswald", sans-serif;
+        font-size: 2.3rem;
+        line-height: 0.8;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .nav a {
+        transition: opacity 140ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        opacity: 0.65;
+      }
+
+      .icon-btn {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .icon {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      .menu-toggle {
+        display: none;
+        margin-left: auto;
+      }
+
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        gap: var(--space-5);
+        padding: var(--space-6) var(--space-5) var(--space-5);
+        background: var(--panel);
+        min-height: clamp(420px, 58vw, 760px);
+        overflow: hidden;
+      }
+
+      .hero-title {
+        max-width: 8ch;
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: clamp(2.4rem, 4.3vw, 4rem);
+        line-height: 1.13;
+        margin: 2.4rem 0 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-art {
+        position: absolute;
+        right: -2%;
+        bottom: -12%;
+        width: min(74%, 620px);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-art img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transform: rotate(180deg) scale(1.2);
+        transform-origin: center center;
+      }
+
+      .card-shell {
+        margin: 0 var(--space-5) var(--space-5);
+        border: 1px solid var(--border);
+      }
+
+      #a-propos {
+        position: relative;
+        margin-top: clamp(-120px, -10vw, -72px);
+        z-index: 3;
+      }
+
+      .card-shell-heading {
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3) var(--space-4) var(--space-2);
+      }
+
+      .card-shell-heading .section-title {
+        font-size: clamp(2.1rem, 4vw, 4rem);
+      }
+
+      .card-shell-body {
+        padding: var(--space-3) var(--space-4);
+        font-size: clamp(1rem, 1.12vw, 1.14rem);
+        line-height: 1.3;
+      }
+
+      .section-break {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3) var(--space-5) var(--space-2);
+        margin-bottom: var(--space-4);
+      }
+
+      .section-break,
+      .title-columns {
+        display: none;
+      }
+
+      .section-break .section-title {
+        font-size: clamp(2.1rem, 3.6vw, 4rem);
+      }
+
+      .product-grid {
+        padding: 0 var(--space-4);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-3);
+      }
+
+      .product-card {
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+
+      .product-card-head {
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-1) var(--space-2);
+      }
+
+      .product-card-name {
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(0.93rem, 0.95vw, 1.05rem);
+        letter-spacing: 0.46em;
+        text-transform: uppercase;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .product-card-visual {
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3);
+        min-height: 310px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-card-visual img {
+        width: auto;
+        max-width: 100%;
+        max-height: 250px;
+        object-fit: contain;
+      }
+
+      .product-card-body {
+        padding: var(--space-2) var(--space-3) var(--space-4);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-card-label {
+        margin: 0 0 var(--space-2);
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 1.04vw, 1.08rem);
+      }
+
+      .ingredients {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.18rem;
+        font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+        line-height: 1.15;
+      }
+
+      .ingredients li::before {
+        content: "- ";
+      }
+
+      .abv {
+        margin-top: auto;
+        margin-left: auto;
+        width: max-content;
+        background: #111111;
+        color: #ffffff;
+        padding: 0.12rem 0.42rem;
+        font-size: clamp(0.78rem, 0.84vw, 0.9rem);
+        font-weight: 700;
+        text-transform: lowercase;
+      }
+
+      .line-panel {
+        margin-top: var(--space-3);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .line-panel-title {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 1.08vw, 1.1rem);
+        padding: var(--space-2) var(--space-3) 0.35rem;
+      }
+
+      .line-panel-text {
+        text-align: center;
+        padding: 0.15rem var(--space-4) var(--space-3);
+        font-size: clamp(0.95rem, 1.04vw, 1.06rem);
+        line-height: 1.3;
+      }
+
+      .line-panel-footnote {
+        border-top: 1px solid var(--border);
+        text-align: center;
+        padding: var(--space-3) var(--space-4);
+        font-size: clamp(1.1rem, 1.22vw, 1.26rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .line-panel-footnote p {
+        margin: 0;
+      }
+
+      .about-grid {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .about-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        min-height: 320px;
+      }
+
+      .about-row + .about-row {
+        border-top: 1px solid var(--border);
+      }
+
+      @media (min-width: 769px) {
+        .about-row--reverse .about-copy {
+          order: 1;
+        }
+
+        .about-row--reverse .about-image-frame {
+          order: 2;
+        }
+      }
+
+      .about-image-frame {
+        padding: var(--space-3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--panel);
+      }
+
+      .about-feature-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .about-copy {
+        padding: var(--space-5) var(--space-4);
+        font-size: clamp(1rem, 1.13vw, 1.16rem);
+        line-height: 1.24;
+      }
+
+      .about-copy p {
+        margin: 0 0 var(--space-4);
+      }
+
+      .about-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .title-columns {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .title-column {
+        padding: var(--space-5) var(--space-4) var(--space-4);
+        font-size: clamp(1rem, 1.13vw, 1.16rem);
+        line-height: 1.24;
+      }
+
+      .title-column + .title-column {
+        border-left: 1px solid var(--border);
+      }
+
+      .title-column p {
+        margin: 0 0 var(--space-4);
+      }
+
+      .title-column p:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-shell {
+        margin: var(--space-5) var(--space-5) 0;
+        border: 1px solid var(--border);
+      }
+
+      .contact-head {
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-2) var(--space-4) var(--space-1);
+      }
+
+      .contact-head .section-title {
+        font-size: clamp(2rem, 3vw, 3rem);
+      }
+
+      .contact-intro {
+        padding: var(--space-3) var(--space-4);
+        border-bottom: 1px solid var(--border);
+        font-size: clamp(0.98rem, 1.06vw, 1.1rem);
+        line-height: 1.3;
+      }
+
+      .contact-form {
+        padding: var(--space-3) var(--space-4) var(--space-4);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-1);
+      }
+
+      .field {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .field label {
+        text-transform: uppercase;
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 0.1em;
+        font-size: 0.85rem;
+      }
+
+      .field input,
+      .field textarea {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: var(--text);
+        font: inherit;
+        font-size: 0.98rem;
+        padding: 0.35rem 0.45rem;
+      }
+
+      .field textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .field-full {
+        grid-column: 1 / -1;
+      }
+
+      .contact-actions {
+        margin-top: var(--space-2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-2);
+      }
+
+      .submit-btn {
+        border: 1px solid var(--text);
+        background: var(--text);
+        color: #ffffff;
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 0.4rem 1rem;
+        font-size: 0.86rem;
+        cursor: pointer;
+      }
+
+      .submit-btn:hover,
+      .submit-btn:focus-visible {
+        opacity: 0.85;
+      }
+
+      .feedback {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .feedback.error {
+        color: #a00000;
+      }
+
+      .feedback.ok {
+        color: #105e10;
+      }
+
+      .pre-footer {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pre-footer img {
+        width: 100%;
+        height: 112px;
+        object-fit: cover;
+      }
+
+      .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .footer-col {
+        min-height: 204px;
+        padding: var(--space-4);
+      }
+
+      .footer-col + .footer-col {
+        border-left: 1px solid var(--border);
+      }
+
+      .footer-logo {
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(6rem, 8vw, 11rem);
+        font-weight: 700;
+        line-height: 0.84;
+      }
+
+      .footer-title {
+        margin: 0 0 var(--space-3);
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(1.05rem, 1.12vw, 1.2rem);
+      }
+
+      .footer-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        display: grid;
+        gap: 0.34rem;
+      }
+
+      .footer-links a {
+        text-decoration: underline;
+      }
+
+      .footer-contact {
+        text-align: center;
+        display: grid;
+        gap: 0.78rem;
+        justify-items: center;
+        font-size: clamp(1.05rem, 1.13vw, 1.2rem);
+        font-weight: 700;
+      }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+      }
+
+      .legal {
+        border-bottom: 1px solid var(--border);
+        padding: 0.6rem 0.8rem;
+        font-size: clamp(0.8rem, 0.84vw, 0.9rem);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.95rem;
+        text-align: center;
+      }
+
+      .legal span {
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1024px) {
+        .header {
+          padding: var(--space-3) var(--space-4) var(--space-2);
+        }
+
+        .logo {
+          font-size: 2rem;
+        }
+
+        .nav {
+          gap: var(--space-3);
+          font-size: 0.95rem;
+        }
+
+        .hero,
+        .card-shell,
+        .section-break,
+        .contact-shell {
+          margin-left: var(--space-4);
+          margin-right: var(--space-4);
+        }
+
+        .hero {
+          padding: var(--space-5) var(--space-4) var(--space-4);
+        }
+
+        .product-grid {
+          padding: 0 var(--space-3);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          padding: var(--space-3);
+        }
+
+        .header-bar {
+          align-items: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .nav {
+          width: 100%;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--space-2);
+          margin-top: var(--space-2);
+          font-size: 0.98rem;
+          border-top: 1px solid var(--border);
+          padding-top: var(--space-2);
+        }
+
+        .nav.open {
+          display: flex;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: var(--space-4);
+          padding-top: var(--space-4);
+          min-height: 0;
+        }
+
+        .hero-title {
+          margin-top: 0;
+          max-width: 100%;
+          letter-spacing: 0.22em;
+        }
+
+        .hero-art {
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: min(70%, 320px);
+          margin: 0 auto;
+          transform: none;
+        }
+
+        .hero-art img {
+          transform: rotate(180deg) scale(0.95);
+        }
+
+        .card-shell {
+          margin-bottom: var(--space-4);
+        }
+
+        #a-propos {
+          margin-top: -42px;
+        }
+
+        .card-shell-heading .section-title {
+          font-size: clamp(1.8rem, 8.4vw, 2.5rem);
+        }
+
+        .card-shell-body {
+          font-size: 0.98rem;
+        }
+
+        .section-break {
+          padding: var(--space-2) var(--space-3);
+        }
+
+        .section-break .section-title {
+          letter-spacing: 0.3em;
+          font-size: clamp(1.5rem, 6.6vw, 2.2rem);
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+          padding: 0 var(--space-3);
+          gap: var(--space-2);
+        }
+
+        .product-card-visual {
+          min-height: 240px;
+        }
+
+        .about-row {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .about-copy {
+          font-size: 0.98rem;
+          padding: var(--space-3);
+        }
+
+        .title-columns {
+          grid-template-columns: 1fr;
+        }
+
+        .title-column + .title-column {
+          border-left: 0;
+          border-top: 1px solid var(--border);
+        }
+
+        .title-column {
+          padding: var(--space-3);
+          font-size: 0.98rem;
+        }
+
+        .contact-shell {
+          margin: var(--space-3) var(--space-3) 0;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-main {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-col + .footer-col {
+          border-left: 0;
+          border-top: 1px solid var(--border);
+        }
+
+        .footer-col {
+          min-height: 0;
+        }
+
+        .footer-logo {
+          font-size: clamp(4.5rem, 16vw, 6.8rem);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .section-title {
+          letter-spacing: 0.24em;
+        }
+
+        .hero-title {
+          letter-spacing: 0.16em;
+          font-size: clamp(1.75rem, 10vw, 2.2rem);
+        }
+
+        .hero-art {
+          width: min(64%, 250px);
+        }
+
+        .hero-art img {
+          transform: rotate(180deg) scale(0.9);
+        }
+
+        .section-break .section-title {
+          letter-spacing: 0.18em;
+        }
+
+        #a-propos {
+          margin-top: -28px;
+        }
+
+        .product-card-name {
+          letter-spacing: 0.28em;
+        }
+
+        .legal {
+          gap: 0.6rem;
+          font-size: 0.82rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header-bar">
+          <a href="#" class="logo" aria-label="Retour en haut">LMIX</a>
+          <button
+            class="icon-btn menu-toggle"
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            id="menu-toggle"
+          >
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <nav class="nav" id="site-nav" aria-label="Navigation principale">
+            <a href="#sans-alcool">Sans-Alcool</a>
+            <a href="#bas-alcool">Bas-Alcool</a>
+            <a href="#a-propos-de-nous">A propos de nous</a>
+            <a href="#contact">Contactez-nous</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <h1 class="hero-title">Amenez l&rsquo;expérience bar à cocktails chez&nbsp;vous</h1>
+          <div class="hero-art">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/bg.png?v=1771263587&amp;width=1200"
+              srcset="
+                https://cdn.shopify.com/s/files/1/0672/9111/9914/files/bg.png?v=1771263587&amp;width=700 700w,
+                https://cdn.shopify.com/s/files/1/0672/9111/9914/files/bg.png?v=1771263587&amp;width=1000 1000w,
+                https://cdn.shopify.com/s/files/1/0672/9111/9914/files/bg.png?v=1771263587&amp;width=1400 1400w
+              "
+              sizes="(max-width: 768px) 100vw, 70vw"
+              alt="Illustration artistique noire et blanche"
+              width="900"
+              height="620"
+            />
+          </div>
+        </section>
+
+        <section id="a-propos" class="card-shell">
+          <div class="card-shell-heading">
+            <h2 class="section-title">LMIX</h2>
+          </div>
+          <div class="card-shell-body">
+            <p>
+              LMIX est née de la rencontre de deux passionnés animés par l&rsquo;envie de réinventer
+              le cocktail prêt-à-déguster. Nous élaborons des cocktails avec et sans alcool à
+              partir d&rsquo;ingrédients bruts, naturels et soigneusement sourcés.
+            </p>
+            <p>
+              Fruits frais pressés par nos soins, alcools majoritairement français, partenariats
+              locaux et production 100&nbsp;% française dans notre atelier à Albi&nbsp;: chaque
+              recette est pensée sans additif, sans colorant ni conservateur artificiel. Chez
+              LMIX, le goût, l&rsquo;innovation et les engagements responsables sont au cœur de nos
+              créations.
+            </p>
+          </div>
+        </section>
+
+        <section id="sans-alcool" class="drinks-section">
+          <div class="section-break">
+            <h2 class="section-title">Sans-Alcool</h2>
+          </div>
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Velvet</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Scarlet4-Grande.png?v=1760304557&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Scarlet4-Grande.png?v=1760304557&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Scarlet4-Grande.png?v=1760304557&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Scarlet4-Grande.png?v=1760304557&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Velvet"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Bitter Papilles Cocktails sans alcool (infusion d&rsquo;épices)</li>
+                  <li>Thé noir fumé</li>
+                  <li>Sirop artisanal (sucre + eau)</li>
+                  <li>Purée de cerise griotte</li>
+                  <li>Jus de citrons frais pressés</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Aurora</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tetedebourriquet2.png?v=1760304542&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tetedebourriquet2.png?v=1760304542&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tetedebourriquet2.png?v=1760304542&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tetedebourriquet2.png?v=1760304542&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Aurora"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Infusion de menthe fraîche</li>
+                  <li>Cordial à la fleur de sureau</li>
+                  <li>Citrons frais pressés</li>
+                  <li>Infusion de gingembre frais</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Lys</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Nectar1-Grande.png?v=1760304013&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Nectar1-Grande.png?v=1760304013&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Nectar1-Grande.png?v=1760304013&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Nectar1-Grande.png?v=1760304013&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Lys"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Thé vert au jasmin</li>
+                  <li>Infusion d&rsquo;épice</li>
+                  <li>Jus de citrons frais pressés</li>
+                  <li>Sirop artisanal (sucre + eau)</li>
+                  <li>Purée de pêche</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="line-panel">
+            <p class="line-panel-title">Conseils de dégustation</p>
+            <p class="line-panel-text">
+              Servir 10 cl de mocktail dans un verre de style old fashioned rempli de gros
+              glaçons, compléter le verre avec 3 à 4 cl d&rsquo;eau plate ou pétillante. Ajouter une
+              tranche d&rsquo;orange fraîche ou déshydratée. Déguster&nbsp;! Nos cocktails sans alcool se
+              conserve 18 mois avant ouverture hors réfrigération et 7 jours après ouverture au
+              réfrigérateur. Ils sont simplement pasteurisés pour conserver le goût sans ajouter de
+              conservateur.
+            </p>
+          </div>
+        </section>
+
+        <section id="bas-alcool" class="drinks-section">
+          <div class="section-break">
+            <h2 class="section-title">Bas Alcool</h2>
+          </div>
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Akalat</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Jungle_Bird_-_Moyenne.jpg?v=1771263984&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Jungle_Bird_-_Moyenne.jpg?v=1771263984&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Jungle_Bird_-_Moyenne.jpg?v=1771263984&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Jungle_Bird_-_Moyenne.jpg?v=1771263984&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Akalat"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Rum des Caraïbes</li>
+                  <li>Jus d&rsquo;ananas</li>
+                  <li>Citrons vert frais pressés</li>
+                  <li>Sirop artisanal (eau + sucre)</li>
+                  <li>Campari</li>
+                </ul>
+                <p class="abv">12,9% vol</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Furie</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tete_de_Mule_-_Moyenne.jpg?v=1771264026&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tete_de_Mule_-_Moyenne.jpg?v=1771264026&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tete_de_Mule_-_Moyenne.jpg?v=1771264026&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Tete_de_Mule_-_Moyenne.jpg?v=1771264026&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Furie"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Vodka française</li>
+                  <li>Infusion de menthe fraîche</li>
+                  <li>Cordial à la fleur de sureau</li>
+                  <li>Citrons frais pressés</li>
+                  <li>Infusion de gingembre frais</li>
+                </ul>
+                <p class="abv">12,8% vol</p>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card-head">
+                <h3 class="product-card-name">Pearl</h3>
+              </div>
+              <div class="product-card-visual">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Peche_au_Dragon_-_Moyenne.jpg?v=1771264047&amp;width=500"
+                  srcset="
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Peche_au_Dragon_-_Moyenne.jpg?v=1771264047&amp;width=320 320w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Peche_au_Dragon_-_Moyenne.jpg?v=1771264047&amp;width=500 500w,
+                    https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Peche_au_Dragon_-_Moyenne.jpg?v=1771264047&amp;width=700 700w
+                  "
+                  sizes="(max-width: 768px) 68vw, 250px"
+                  alt="Cocktail Pearl"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-card-body">
+                <h4 class="product-card-label">Ingrédients</h4>
+                <ul class="ingredients">
+                  <li>Gin français</li>
+                  <li>Thé vert au jasmin, citrons frais pressés</li>
+                  <li>Sirop artisanal (sucre + eau)</li>
+                  <li>Liqueur de pêche</li>
+                  <li>Boisson spiritueuse absinthe</li>
+                  <li>Ylang ylang</li>
+                  <li>Épices</li>
+                </ul>
+                <p class="abv">13,1% vol</p>
+              </div>
+            </article>
+          </div>
+          <div class="line-panel">
+            <p class="line-panel-title">Conseils de dégustation</p>
+            <p class="line-panel-text">
+              Prenez 3 à 4 glaçons de bonne taille, versez 10 cl de cocktail dessus, puis trinquez
+              et dégustez. Nous recommandons de consommer nos cocktails avec alcool sous 18 mois
+              avant ouverture et 12 mois après ouverture.
+            </p>
+            <div class="line-panel-footnote">
+              <p>
+                Nos cocktails sont mis en bouteilles à la main dans notre laboratoire à Albi, le
+                tout : <strong>sans conservateur | sans colorant | sans additif.</strong>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="a-propos-de-nous" class="section-break">
+          <h2 class="section-title">A propos de nous</h2>
+        </section>
+
+        <section class="about-grid">
+          <div class="about-row">
+            <div class="about-image-frame">
+              <img
+                class="about-feature-image"
+                src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Sans_Alcool.png?v=1771264101&amp;width=1200"
+                srcset="
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Sans_Alcool.png?v=1771264101&amp;width=480 480w,
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Sans_Alcool.png?v=1771264101&amp;width=900 900w,
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Sans_Alcool.png?v=1771264101&amp;width=1200 1200w
+                "
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt="Collection Sans-Alcool"
+                width="700"
+                height="500"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-copy">
+              <p>
+                LMIX est née de la rencontre entre deux passionnés souhaitant réinventer le
+                cocktail prêt-à-déguster. La marque propose des créations avec et sans alcool,
+                élaborées à partir d&rsquo;ingrédients bruts et naturels, soigneusement sourcés.
+              </p>
+              <p>
+                Toute la production, de la mise en bouteille à la logistique, est réalisée en
+                France, dans leur atelier à Albi, garantissant qualité et savoir-faire local.
+              </p>
+            </div>
+          </div>
+          <div class="about-row about-row--reverse">
+            <div class="about-image-frame">
+              <img
+                class="about-feature-image"
+                src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Avec_alcool.png?v=1771264130&amp;width=1200"
+                srcset="
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Avec_alcool.png?v=1771264130&amp;width=480 480w,
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Avec_alcool.png?v=1771264130&amp;width=900 900w,
+                  https://cdn.shopify.com/s/files/1/0672/9111/9914/files/Avec_alcool.png?v=1771264130&amp;width=1200 1200w
+                "
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt="Collection Bas Alcool"
+                width="700"
+                height="500"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-copy">
+              <p>
+                La qualité des produits frais est au centre de la démarche LMIX. Les fruits sont
+                pressés directement par l&rsquo;équipe afin de garantir fraîcheur, intensité aromatique
+                et naturalité.
+              </p>
+              <p>
+                Les agrumes et autres ingrédients sont sélectionnés avec exigence auprès de
+                partenaires locaux privilégiant les circuits courts et des relations durables. Les
+                alcools, notamment français, sont choisis pour leur excellence et leur pureté.
+              </p>
+              <p>
+                Cette attention portée aux matières premières permet d&rsquo;obtenir des cocktails
+                authentiques, riches en goût, où chaque ingrédient exprime pleinement ses arômes.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-break">
+          <h2 class="section-title">Titre</h2>
+        </section>
+
+        <section id="contact" class="contact-shell">
+          <div class="contact-head">
+            <h2 class="section-title">Contactez -nous</h2>
+          </div>
+          <p class="contact-intro">
+            Vous êtes un particulier ou un professionnel et vous souhaitez en savoir plus sur notre
+            savoir-faire, nos produits ainsi que nos créations&nbsp;? Vous avez une demande
+            particulière et vous aimeriez qu&rsquo;on la réalise&nbsp;? N&rsquo;hésitez pas à nous contacter, nous
+            nous ferons un plaisir de vous répondre le plus rapidement possible.
+          </p>
+
+          <form
+            id="contact-form"
+            class="contact-form"
+            action="mailto:contact@lmix.fr"
+            method="post"
+            enctype="text/plain"
+          >
+            <div class="form-grid">
+              <div class="field">
+                <label for="first-name">Nom</label>
+                <input id="first-name" name="nom" autocomplete="family-name" required />
+              </div>
+              <div class="field">
+                <label for="last-name">Prénom</label>
+                <input id="last-name" name="prenom" autocomplete="given-name" required />
+              </div>
+              <div class="field field-full">
+                <label for="email">Adresse email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="vous@domaine.com"
+                  required
+                />
+              </div>
+              <div class="field field-full">
+                <label for="phone">Numéro de téléphone</label>
+                <input id="phone" name="telephone" autocomplete="tel" required />
+              </div>
+              <div class="field field-full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+            </div>
+            <div class="contact-actions">
+              <button id="submit-btn" class="submit-btn" type="submit">Envoyer</button>
+              <p id="form-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+      </main>
+
+      <section class="pre-footer" aria-hidden="true">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0672/9111/9914/files/ELEMENT_12.png?v=1771264163&amp;width=1600"
+          srcset="
+            https://cdn.shopify.com/s/files/1/0672/9111/9914/files/ELEMENT_12.png?v=1771264163&amp;width=1024 1024w,
+            https://cdn.shopify.com/s/files/1/0672/9111/9914/files/ELEMENT_12.png?v=1771264163&amp;width=1600 1600w,
+            https://cdn.shopify.com/s/files/1/0672/9111/9914/files/ELEMENT_12.png?v=1771264163&amp;width=2200 2200w
+          "
+          sizes="100vw"
+          alt=""
+          width="1025"
+          height="112"
+          loading="lazy"
+        />
+      </section>
+
+      <footer>
+        <div class="footer-main">
+          <div class="footer-col">
+            <div class="footer-logo">LMIX</div>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-title">Où nous trouver</h3>
+            <ul class="footer-links">
+              <li>Dans votre supermarché préféré</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <div class="footer-contact">
+              <h3 class="footer-title">Nous suivre</h3>
+              <div>81 000, Albi</div>
+              <div>
+                email :
+                <a href="mailto:contact@lmix.fr">contact@lmix.fr</a>
+              </div>
+              <div class="socials">
+                <a
+                  href="https://www.instagram.com/lmix.cocktails/"
+                  class="icon-btn"
+                  aria-label="Instagram"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                    <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="legal">
+          <span>&copy; 2026, LMIX</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var toggle = document.getElementById("menu-toggle");
+        var nav = document.getElementById("site-nav");
+        var navLinks = nav ? nav.querySelectorAll("a") : [];
+        var form = document.getElementById("contact-form");
+        var firstName = document.getElementById("first-name");
+        var lastName = document.getElementById("last-name");
+        var email = document.getElementById("email");
+        var phone = document.getElementById("phone");
+        var message = document.getElementById("message");
+        var feedback = document.getElementById("form-feedback");
+
+        if (toggle && nav) {
+          toggle.addEventListener("click", function () {
+            var isOpen = nav.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", String(isOpen));
+          });
+        }
+
+        if (navLinks.length) {
+          navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+              if (nav.classList.contains("open")) {
+                nav.classList.remove("open");
+                toggle.setAttribute("aria-expanded", "false");
+              }
+            });
+          });
+        }
+
+        if (form) {
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var f = firstName.value.trim();
+            var l = lastName.value.trim();
+            var e = email.value.trim();
+            var p = phone.value.trim();
+            var m = message.value.trim();
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!f || !l || !e || !p || !m) {
+              feedback.textContent = "Merci de remplir tous les champs.";
+              feedback.className = "feedback error";
+              return;
+            }
+
+            if (!emailPattern.test(e)) {
+              feedback.textContent = "Merci de saisir une adresse email valide.";
+              feedback.className = "feedback error";
+              email.focus();
+              return;
+            }
+
+            var subject = encodeURIComponent("Demande de contact LMIX");
+            var body = encodeURIComponent(
+              "Nom: " +
+                f +
+                "\nPrénom: " +
+                l +
+                "\nEmail: " +
+                e +
+                "\nTéléphone: " +
+                p +
+                "\n\nMessage:\n" +
+                m
+            );
+            var mailto = "mailto:contact@lmix.fr?subject=" + subject + "&body=" + body;
+
+            feedback.textContent =
+              "Ouverture de votre messagerie. Si rien ne se passe, vérifiez votre client email par défaut.";
+            feedback.className = "feedback ok";
+            window.location.href = mailto;
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
